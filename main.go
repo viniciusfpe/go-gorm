@@ -122,3 +122,4 @@ func (i *Impl) DeleteReminder(w rest.ResponseWriter, r *rest.Request) {
     }
     w.WriteHeader(http.StatusOK)
 }
+    
