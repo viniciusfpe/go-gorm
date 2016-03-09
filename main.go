@@ -17,7 +17,7 @@ func main() {
 
     api := rest.NewApi()
     api.Use(rest.DefaultDevStack...)
-        router, err := rest.MakeRouter(
+    router, err := rest.MakeRouter(
         rest.Get("/reminders", i.GetAllReminders),
         rest.Post("/reminders", i.PostReminder),
         rest.Get("/reminders/:id", i.GetReminder),
@@ -36,16 +36,15 @@ type Reminder struct {
     Message   string    `sql:"size:1024" json:"message"`
     CreatedAt time.Time `json:"createdAt"`
     UpdatedAt time.Time `json:"updatedAt"`
-    DeletedAt time.Time `json:"-"`
 }
 
 type Impl struct {
-    DB gorm.DB
+    DB *gorm.DB
 }
 
 func (i *Impl) InitDB() {
     var err error
-    i.DB, err = gorm.Open("mysql", "root:root@/api_go?charset=utf8&parseTime=True")
+    i.DB, err = gorm.Open("mysql", "root:root@/local?charset=utf8&parseTime=True")
     if err != nil {
         log.Fatalf("Got error when connect database, the error is '%v'", err)
     }
