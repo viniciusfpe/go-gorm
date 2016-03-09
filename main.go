@@ -17,7 +17,7 @@ func main() {
 
     api := rest.NewApi()
     api.Use(rest.DefaultDevStack...)
-    router, err := rest.MakeRouter(
+        router, err := rest.MakeRouter(
         rest.Get("/reminders", i.GetAllReminders),
         rest.Post("/reminders", i.PostReminder),
         rest.Get("/reminders/:id", i.GetReminder),
