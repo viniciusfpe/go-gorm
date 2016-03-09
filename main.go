@@ -5,7 +5,7 @@ import (
     "net/http"
     "github.com/ant0ine/go-json-rest/rest"
 
-    c "go-gorm/app/controllers"
+    c "go-gorm/app/controllers" 
 )
 
 func main() {
