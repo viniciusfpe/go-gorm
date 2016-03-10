@@ -2,13 +2,13 @@ package controllers
 
 import (
     "os"
-    "log"
     "net/http"
     "github.com/jinzhu/gorm"
     _"github.com/go-sql-driver/mysql"
     "github.com/ant0ine/go-json-rest/rest"
 
     m "go-gorm/app/models"
+    l4g "github.com/shengkehua/xlog4go"
 )
 
 
@@ -23,7 +23,7 @@ func (i *ImplGorm) InitDB() {
     i.DB, err = gorm.Open(os.Getenv("db"), os.Getenv("connection"))
     
     if err != nil {
-        log.Fatalf("Got error when connect database, the error is '%v'", err)
+        l4g.Error("Got error when connect database, the error is '%v'", err.Error())
     }
     
     i.DB.LogMode(true)

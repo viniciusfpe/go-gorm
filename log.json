@@ -1,0 +1,17 @@
+{
+    "LogLevel" : "trace",
+
+    "FileWriter" : {
+        "On": true,
+
+        "LogPath" : "/apps/go-gorm/go-gorm.log",
+        "RotateLogPath" : "/apps/go-gorm/go-gorm.log-%Y%M%D%H",
+
+        "WfLogPath" : "/apps/go-gorm/go-gorm.log.wf",
+        "RotateWfLogPath" : "./apps/go-gorm/go-gorm.log.wf-%Y%M%D%H"
+    },
+
+    "ConsoleWriter" : {
+        "On" : true
+    }
+}

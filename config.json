@@ -10,5 +10,9 @@
     { 
         "key": "connection",
         "value": "root:root@/local?charset=utf8&parseTime=True"
+    },
+    { 
+        "key": "file_log",
+        "value": "log.json"
     }
 ]

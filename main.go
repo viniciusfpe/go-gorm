@@ -2,8 +2,8 @@ package main
 
 import (
     "os"
-    "log"
     "net/http"
+    l4g "github.com/shengkehua/xlog4go"
     "github.com/ant0ine/go-json-rest/rest"
 
     c "go-gorm/app/controllers" 
@@ -13,6 +13,11 @@ import (
 func main() {
 
     env.InitEnvs()
+
+    if err := l4g.SetupLogWithConf(os.Getenv("file_log")); err != nil {
+        panic(err)
+    }
+    defer l4g.Close()   
 
     i := c.ImplGorm{}
     i.InitDB()
@@ -30,11 +35,14 @@ func main() {
     )
     
     if err != nil {
-        log.Fatal(err)
+        l4g.Error(err.Error())
     }
-    
+
+    l4g.Trace("Init service go-gorm in port %s", os.Getenv("port"))    
+
     api.SetApp(router)
-    
-    log.Fatal(http.ListenAndServe(os.Getenv("port"), api.MakeHandler()))
+
+    l4g.Error(http.ListenAndServe(os.Getenv("port"), api.MakeHandler()).Error())
+
 }
 
