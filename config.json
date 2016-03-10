@@ -1,0 +1,14 @@
+[
+    { 
+        "key": "port",
+        "value": ":8000"
+    },
+    { 
+        "key": "db",
+        "value": "mysql"
+    },
+    { 
+        "key": "connection",
+        "value": "root:root@/local?charset=utf8&parseTime=True"
+    }
+]

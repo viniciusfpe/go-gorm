@@ -1,14 +1,18 @@
 package main
 
 import (
+    "os"
     "log"
     "net/http"
     "github.com/ant0ine/go-json-rest/rest"
 
     c "go-gorm/app/controllers" 
+    env "go-gorm/app"
 )
 
 func main() {
+
+    env.InitEnvs()
 
     i := c.ImplGorm{}
     i.InitDB()
@@ -31,6 +35,6 @@ func main() {
     
     api.SetApp(router)
     
-    log.Fatal(http.ListenAndServe(":8080", api.MakeHandler()))
+    log.Fatal(http.ListenAndServe(os.Getenv("port"), api.MakeHandler()))
 }
 

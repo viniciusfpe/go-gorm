@@ -1,6 +1,7 @@
 package controllers
 
 import (
+    "os"
     "log"
     "net/http"
     "github.com/jinzhu/gorm"
@@ -19,7 +20,7 @@ func (i *ImplGorm) InitDB() {
     
     var err error
     
-    i.DB, err = gorm.Open("mysql", "root:root@/local?charset=utf8&parseTime=True")
+    i.DB, err = gorm.Open(os.Getenv("db"), os.Getenv("connection"))
     
     if err != nil {
         log.Fatalf("Got error when connect database, the error is '%v'", err)
